@@ -6,27 +6,27 @@ import net.thucydides.core.annotations.Step;
 import static net.serenitybdd.rest.SerenityRest.restAssuredThat;
 import static org.hamcrest.Matchers.equalTo;
 
-public class Get {
+public class GetSingleUser {
     protected static String url = "https://reqres.in/api/";
 
-    @Step("I set GET api endpoints")
+    @Step("I set GET api endpoints for single user")
     public String setApiEndpoints() {
-        return url + "users/2";
+        return url + "unknown/2";
     }
 
-    @Step("I send GET HTTP request")
+    @Step("I send GET HTTP Request single user")
     public void sendGetHttpRequest() {
         SerenityRest.given().get(setApiEndpoints());
     }
 
-    @Step("I receive valid HTTP response code 200")
+    @Step("I receive valid HTTP response code 200 single user")
     public void validateHttpResponseCode200() {
         restAssuredThat(response -> response.statusCode(200));
     }
 
-    @Step("I receive valid data for detail user")
+    @Step("I receive valid data for detail single user")
     public void validateDataDetailUser() {
         restAssuredThat(response -> response.body("'data'.'id'", equalTo(2)));
-        restAssuredThat(response -> response.body("'data'.'first_name'", equalTo("Janet")));
+        restAssuredThat(response -> response.body("'data'.'name'", equalTo("fuchsia rose")));
     }
 }
